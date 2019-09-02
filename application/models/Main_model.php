@@ -3,12 +3,19 @@ class Main_model extends CI_Model
 {
   function GetMenu()
   {
-      $this->db->select('*');
-      $this->db->from('secure_form_akses');
-      $this->db->where('department', 'ADMIN');
-      $this->db->where('jabatan', 'ADMIN');
-      $this->db->where('nama_header', 'TRANSAKSI');
-      $menu = $this->db->get();
+      $menu = array();
+      $scr = "SELECT formheader,formname,formtitle FROM secure_form_register a, secure_form_akses b 
+              WHERE a.id_form=b.id_form AND b.formdepartment=1 AND b.formjabatan=1
+              ORDER BY formheader";    
+      $query = $this->db->query($scr);
+      foreach ($query->result() as $row)
+      {
+              $menu[] =  array('formheader' => $row->formheader, 
+                               'formname' => $row->formname, 
+                               'formtitle' => $row->formtitle 
+                              );
+      }
+
       return $menu;
   }
 
