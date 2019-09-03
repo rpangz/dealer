@@ -43,9 +43,7 @@
 
                 </div> <!-- content -->
 
-                <footer class="footer text-right">
-                    © 2016. All rights reserved.
-                </footer>
+                
 
             </div>
 
@@ -60,6 +58,9 @@
             <!-- /Right-bar -->
 
         </div>
+
+        
+        
         <!-- END wrapper -->
         <?php $this->load->view('_partial/footer.php'); ?>
     </body>

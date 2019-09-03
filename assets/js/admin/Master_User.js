@@ -75,9 +75,10 @@ function loaddatatablex(Query){
 }
 
 function loaddatatable(Query){
+
 	$('#datatablemaster').dataTable( {
 	    ajax: {
-	        url: 'Transaksi_bank/dataTable',
+	        url: 'Master_User/dataTable',
 	        data : function(d){
 	        	d.Query = Query;
 	        },
@@ -86,12 +87,18 @@ function loaddatatable(Query){
 	    pageLength:5,
 	    "bDestroy": true,
 	    columns: [  
-	    { data: 'noref' },
-	    { data: 'tglmasuk'},
-	    { data: 'rekening' },
-	    { data: 'jenistrx' },
-	    { data: 'nominal'},
-	    { data: 'keterangan'}
+		    { data: 'nik' },
+		    { data: 'nama'},
+		    { data: 'dept_name' },
+		    { data: 'jabatan_name' },
+		    { data: 'statusname'},
+		    { data: 'statusname'}
+	    ],
+	    buttons: [
+	        'copy', 'excel', 'pdf'
 	    ]
+
+
+	    
 	} );
 }

@@ -4,19 +4,42 @@
                     <div id="sidebar-menu">
                         <ul>
 
-                            <li class="text-muted menu-title">MENU</li>
+                            <li class="text-muted menu-title">MENU</li>      
 
-                            <?php echo json_encode($menu) ?>
+                            
+                                <?php 
+                                      $scrgenerator = "";
+                                      $headertemp = "";
+                                      $headerclose = false;
+                                      foreach ($menu as $variant) { 
+                                      $header = $variant['formheader'];
+                                      $formname = $variant['formname']; 
+                                      $formtitle = $variant['formtitle'];
+                                      $glyph = $variant['glyph'];
 
+                                          if($header<>$headertemp){
+                                             if($headertemp <> ""){
+                                                 $scrgenerator .= '</ul>
+                                                                   </li>';                                                 
+                                             }     
+                                 
+                                             $scrgenerator .=  '
+                                               <li class="has_sub">
+                                               <a href="javascript:void(0);" class="waves-effect"><i class="'.$glyph.'"></i> <span> '.$header.' </span> 
+                                               <span class="menu-arrow"></span></a>
+                                               <ul class="list-unstyled">';
 
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> TRANSAKSI </span> <span class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <?php foreach ($menu as $variant) { ?>
-                                    <li><a href="<?php echo $variant->formname; ?>"><?php echo $variant->formname; ?></a></li>                             
-                                  <?php } ?>    
-                                </ul>
-                            </li>
+                                          }
+
+                                       $headertemp = $header;
+                                       $scrgenerator .= '<li><a href="'.$formname.'">'.$formtitle.'</a></li>'; 
+                                       }
+
+                                       echo $scrgenerator;
+                                ?>        
+                                      
+                            
+
 
 
                         </ul>

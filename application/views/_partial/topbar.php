@@ -5,10 +5,11 @@
                     <div class="text-center">
                        
                         <!-- Image Logo here -->
-                        <!--<a href="index.html" class="logo">-->
-                            <!--<i class="icon-c-logo"> <img src="assets/images/logo_sm.png" height="42"/> </i>-->
-                            <!--<span><img src="assets/images/logo_light.png" height="20"/></span>-->
-                        <!--</a>-->
+                        <a href="index.html" class="logo">
+                            <i class="icon-c-logo"> <img src="assets/images/logo_sm.png" height="42"/> </i> <!-- Image Logo pada saat minimize menu -->
+                            <span><img src="assets/images/logoam.png" height="20"/></span> <!-- Image Logo pada saat maximize menu -->
+                        </a>
+
                     </div>
                 </div>
 

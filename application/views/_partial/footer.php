@@ -1,5 +1,9 @@
+<footer class="footer text-right">
+      <?php echo $this->config->item('foo'); ?> 
+</footer>
+
 <script>
-            var resizefunc = [];
+        var resizefunc = [];
         </script>
 
         <!-- jQuery  -->

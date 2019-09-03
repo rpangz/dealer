@@ -5,7 +5,7 @@
 
 <link rel="shortcut icon" href="assets/images/favicon_1.ico">
 
-<title>Petty Cash</title>
+<title>Unknown</title>
 
 <!--Morris Chart CSS -->
 <link rel="stylesheet" href="assets/plugins/morris/morris.css">

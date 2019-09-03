@@ -4,15 +4,19 @@ class Main_model extends CI_Model
   function GetMenu()
   {
       $menu = array();
-      $scr = "SELECT formheader,formname,formtitle FROM secure_form_register a, secure_form_akses b 
-              WHERE a.id_form=b.id_form AND b.formdepartment=1 AND b.formjabatan=1
-              ORDER BY formheader";    
+      $scr = "SELECT headername,formname,formtitle,glyph FROM secure_form_register a
+              INNER JOIN secure_form_akses b ON a.id_form=b.id_form
+              INNER JOIN master_formheader c ON a.formheader=c.id_form
+              WHERE b.formdepartment=1 AND b.formjabatan=1
+              AND b.formjabatan=1 AND a.formstatus = 1 AND b.formstatus = 1 AND c.formstatus = 1
+              ORDER BY c.ordinal";    
       $query = $this->db->query($scr);
       foreach ($query->result() as $row)
       {
-              $menu[] =  array('formheader' => $row->formheader, 
+              $menu[] =  array('formheader' => $row->headername, 
                                'formname' => $row->formname, 
-                               'formtitle' => $row->formtitle 
+                               'formtitle' => $row->formtitle, 
+                               'glyph' => $row->glyph
                               );
       }
 
@@ -57,6 +61,18 @@ class Main_model extends CI_Model
 
       return $saldocoh;
   }
+
+
+  function GetJudul($nama) {
+      $this->db->select('*');
+        $this->db->from('secure_form_register');
+        $this->db->where('formname', $nama);
+        $judul = $this->db->get()->result();  
+       foreach ($judul as $variant){
+            $namajudul = $variant->formtitle;                
+          } 
+          return $namajudul;
+    }
   
 }
 
