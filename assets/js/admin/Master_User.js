@@ -84,7 +84,33 @@ function loaddatatable(Query){
 	        },
 	        type : 'post'
 	    },
-	    pageLength:5,
+	    dom: 'Bfrtip',
+	    buttons: [
+            {
+                extend:    'copyHtml5',
+                text:      '<i class="fa fa-files-o" style="color:blue"></i>',
+                titleAttr: 'Copy'
+            },
+            {
+                extend:    'excelHtml5',
+                text:      '<i class="fa fa-file-excel-o" style="color:green"></i>',
+                titleAttr: 'Excel'
+            },
+            {
+                extend:    'pdfHtml5',
+                text:      '<i class="fa fa-file-pdf-o" style="color:red"></i>',
+                titleAttr: 'PDF'
+            },
+            {
+	            text: 'Add New Data',
+	            action: function ( e, dt, node, config ) {
+		                document.getElementById("divdatatable").style.display = "none"; 
+		                document.getElementById("divinput").style.display = "";
+
+	            }
+        	},
+        ],
+	    pageLength:10,
 	    "bDestroy": true,
 	    columns: [  
 		    { data: 'nik' },
@@ -93,10 +119,37 @@ function loaddatatable(Query){
 		    { data: 'jabatan_name' },
 		    { data: 'statusname'},
 		    { data: 'statusname'}
-	    ],
-	    buttons: [
-	        'copy', 'excel', 'pdf'
 	    ]
+
+
+	    
+	} );
+
+
+
+
+
+	table.buttons().container()
+        .appendTo( '#example_wrapper .small-6.columns:eq(0)' );
+
+
+
+
+
+}
+
+
+
+function loaddatatablexx(Query){
+
+	$('#datatablemaster').DataTable( {
+	    
+	    dom: 'Bfrtip',
+	    buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+	    
+        
 
 
 	    

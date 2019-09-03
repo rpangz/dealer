@@ -44,6 +44,14 @@
         <script src="assets/pages/datatables.init.js"></script>
 
 
+        <!-- Penambahan untuk kebutuhan datatable -->
+        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="assets/plugins/datatables/jszip.min.js"></script>
+        <script src="assets/plugins/datatables/pdfmake.min.js"></script>
+        <script src="assets/plugins/datatables/vfs_fonts.js"></script>
+        <script src="assets/plugins/datatables/buttons.html5.min.js"></script>
+        <!-- ===================================================================== -->
 
 
         <script src="assets/pages/jquery.dashboard.js"></script>
@@ -87,6 +95,12 @@
                   complete: function(){}
                 }); 
             }
+
+            function backtotable(){
+                document.getElementById("divdatatable").style.display = "none"; 
+                document.getElementById("divinput").style.display = ""; 
+            }
+
 
         </script>
         

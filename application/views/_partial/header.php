@@ -27,6 +27,11 @@
 <link href="assets/plugins/clockpicker/css/bootstrap-clockpicker.min.css" rel="stylesheet">
 <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
+
+<link href="assets/plugins/datatables/buttons.bootstrap.min.css" rel="stylesheet">
+<link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet">
+<link href="assets/plugins/datatables/buttons.dataTables.min.css" rel="stylesheet">
+
 <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>

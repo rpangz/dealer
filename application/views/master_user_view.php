@@ -83,6 +83,9 @@
                                 <button class="btn btn-info waves-effect waves-light" type="button" style="height: 35px; width: 100px; vertical-align: center" onclick="resetform()"> 
                                     <label style="font-size: 12px">Reset</label>
                                 </button>
+                                <button class="btn btn-danger waves-effect waves-light" type="button" style="height: 35px; width: 100px; vertical-align: center" onclick="backtotable()"> 
+                                    <label style="font-size: 12px">Back To Table</label>
+                                </button>
                         </div>
 
      
