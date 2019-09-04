@@ -51,13 +51,20 @@ function simpan(){
       url: "Master_User/simpan",
       data : {"NIK" : NIK, "nama" : nama, "department" : department, "jabatan" : jabatan, "status" : status},
       success: function(data){
-      	/*
+      	
+      	/*=======================================================*/
       	var datasplit = data.split("|");
         var err_status = datasplit[0];
-        var err_msg = datasplit[1];
-        */
-        
-	      alert(data);
+        var err_msg = datasplit[1];        
+        if(err_status=="OK") {
+        	var alertheader = "Success";
+        	var alerttype   = "success";
+        } else {
+        	var alertheader = "Failed";
+        	var alerttype   = "warning";
+        }
+        swal(alertheader, err_msg, alerttype);
+	    /*==========================================================*/  
 	      loaddatatable();
           resetform();
           
