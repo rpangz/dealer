@@ -44,21 +44,23 @@ function simpan(){
 	var nama = $('#nama').val();
 	var department = $('#department').val();
 	var jabatan = $('#jabatan').val();
+	var status = $('#status').val();
 		// nominal = nominal.replace(/,/g, ''); Untuk Nominal
     $.ajax({
       type: "POST",
       url: "Master_User/simpan",
-      data : {"NIK" : NIK, "rekening" : rekening, "nama" : nama, "department" : department, "jabatan" : jabatan},
+      data : {"NIK" : NIK, "nama" : nama, "department" : department, "jabatan" : jabatan, "status" : status},
       success: function(data){
       	/*
       	var datasplit = data.split("|");
         var err_status = datasplit[0];
         var err_msg = datasplit[1];
         */
+        
 	      alert(data);
 	      loaddatatable();
           resetform();
-          setTimeout(function(){loadsaldobankcoh(),1000});	
+          
       },
       complete: function(){}
     });		

@@ -23,6 +23,14 @@ class Main_model extends CI_Model
       return $menu;
   }
 
+  function GetStatus(){
+        $this->db->select('*');
+        $this->db->from('list_status');
+        $status = $this->db->get()->result_array();
+        return $status;
+  }
+
+
   function GetMenuLaporan()
   {
       $this->db->select('*');

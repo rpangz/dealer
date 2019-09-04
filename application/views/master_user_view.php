@@ -27,7 +27,7 @@
                         <!-- Page-Title -->
                        <div class="row">
                             <div class="col-sm-12">
-                                <h4 class="page-title"><?php echo $judul; ?></h4>              
+                                <h4 class="page-title"><?php echo $judul; ?></h4>                      
                             </div>
                         </div>
 
@@ -84,7 +84,22 @@
                                                             ?>
                                                         </select>                                                        
                                                     </div>
-                                                </div>                                                                                                                                                                           
+                                                </div>     
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Status</label>
+                                                    <div class="col-sm-5">
+                                                        <select class="form-control" id="status" name="status" style="font-size: 11px;" data-attr="input_data">
+                                                            <?php 
+                                                               echo "<option value=></option>"; 
+                                                               foreach ($list_status as $variant) { 
+                                                                  echo "<option value=".$variant['id_status'].">".$variant['statusname']."</option>";
+                                                               } 
+                                                            ?>
+                                                        </select>                                                        
+                                                    </div>
+                                                </div>
+
                                             </form>
                                         </div>
 

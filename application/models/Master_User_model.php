@@ -3,70 +3,60 @@
 	{
 		
 	  function add() {
+
+	  	$error = false;
+	  	$errmsg = "";
+
 	  	$this->load->helper('date');
-	  	$this->form_validation->set_rules('rekening', 'Rekening', 'trim|required');
-	  	$this->form_validation->set_rules('jenistransaksi', 'Jenis Transaksi', 'trim|required');
-	  	$this->form_validation->set_rules('nominal', 'Nominal', 'trim|required');
-	  	$this->form_validation->set_rules('noref', 'Noref', 'trim|required');
-	  	$this->form_validation->set_rules('tglmasuk', 'Tgl Masuk', 'trim|required');
+	  	$this->form_validation->set_rules('NIK', 'NIK', 'trim|required');
+	  	$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+	  	$this->form_validation->set_rules('department', 'Department', 'trim|required');
+	  	$this->form_validation->set_rules('jabatan', 'Jabatan', 'trim|required');
+	  	$this->form_validation->set_rules('status', 'Status', 'trim|required');
 
-	  	$tglmasuk = $this->input->post('tglmasuk');	
-  		$tglmasuk = date('Y-m-d',strtotime($tglmasuk));	  		
-		$rekening = $this->input->post('rekening');
-		$jenistransaksi = $this->input->post('jenistransaksi');
-		$nominal = $this->input->post('nominal');
-		$keterangan = $this->input->post('keterangan');
-		$noref = $this->input->post('noref');
 
-	  	$scr = "SELECT SUM(debet)-SUM(credit) saldo FROM (
-				SELECT CASE WHEN jenistrx = 'DEBET' THEN nominal ELSE 0 END debet,
-				CASE WHEN jenistrx = 'CREDIT' THEN nominal ELSE 0 END credit 
-				FROM tr_pemasukan_bank WHERE rekening = '".$rekening."' AND tglmasuk<='".$tglmasuk."') a";		
-				$query = $this->db->query($scr);
-				foreach ($query->result() as $row)
-				{
-				        $saldobank = $row->saldo;
-				}
 
-		if($saldobank<$nominal && $jenistransaksi=="CREDIT") {
-			$errmsg = "NO|NOMINAL ADJUSTMEN KURANG DARI SALDO";
-	  		echo $errmsg;
-	  		exit;	
+	  	
+
+	  	$NIK = $this->input->post('NIK');	
+  		//$tglmasuk = date('Y-m-d',strtotime($tglmasuk));	  		
+		$nama = $this->input->post('nama');
+		$department = $this->input->post('department');
+		$jabatan = $this->input->post('jabatan');
+		$status = $this->input->post('status');
+
+		$query = $this->db->query("SELECT * FROM secure_user_register WHERE nik = '".$NIK."'");
+		$jumlahdata = $query->num_rows();
+	  	
+
+		if($jumlahdata>0){
+			$error = true;
+			$errmsg .= "NIK Sudah Pernah Di Input";
 		}
 
+		if($this->form_validation->run() == FALSE) {
+			$error = true;
+			$errmsg .= validation_errors();	
+		}		
 
-	  	if ($this->form_validation->run() == FALSE) {
-	  			$errmsg = validation_errors();
-	  			echo $errmsg;
+	  	
+	  	if($error) {
+	  		echo "NO|".$errmsg;
 	  	} else {
-	  		
-			if($noref=="-") {
-				$scr = "SELECT CASE WHEN ref IS NULL THEN 
-		  			CONCAT('BK/',year(now()),'/00000000') 
-		  		ELSE 
-		  			CONCAT('BK/',year(now()),'/',ref) END ref FROM (
-				SELECT LPAD(MAX(REPLACE(REPLACE(noref,'BK/',''),CONCAT(year(now()),'/'),''))+1,8,0) ref FROM tr_pemasukan_bank) a";		
-				$query = $this->db->query($scr);
-				foreach ($query->result() as $row)
-				{
-				        $noref = $row->ref;
-				}	
-			}
-
-			$data = array(
-				'noref' => $noref,
-				'tglmasuk' => $tglmasuk, 
-				'rekening' => $rekening, 
-				'jenistrx' => $jenistransaksi, 
-				'nominal' => $nominal,
-				'keterangan' => $keterangan,
+	  		$data = array(
+				'nik' => $NIK,
+				'nama' => $nama, 
+				'password' => '', 
+				'department' => $department, 
+				'jabatan' => $jabatan,				
 				'createtime' => '2018-01-01',
 				'createuser' => 'testuser',
-				'status' => '+'
+				'status' => $status
 			);
-				$this->db->insert('tr_pemasukan_bank', $data);	
-				echo "Berhasil";
+				$result = $this->db->insert('secure_user_register', $data);	
+				if($result){ echo "OK|Data Berhasil Di Input"; } else { echo "NO|Data Gagal Di Input"; }					
 	  	}
+			
 	  	
 		
 			//$this->db->where('kodecbg', $kodecbg);
