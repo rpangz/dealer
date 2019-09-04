@@ -6,7 +6,7 @@ class Master_User extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		//Do your magic here
+
 		
 	}
 
@@ -25,9 +25,14 @@ class Master_User extends MY_Controller
 		
 		*/
 
+    	$this->load->model('Master_User_model');
+		$this->load->model('Main_model');
     	$nama = $this->router->fetch_class();
 		$data['judul'] = $this->Main_model->GetJudul($nama);
 		$data['formname'] = $nama;
+		$data['department'] = $this->Master_User_model->GetDepartment();
+		$data['jabatan'] = $this->Master_User_model->GetJabatan();
+
 		$this->load->view('master_user_view',$data);
 	}
 

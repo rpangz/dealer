@@ -27,70 +27,93 @@
                         <!-- Page-Title -->
                        <div class="row">
                             <div class="col-sm-12">
-                                <h4 class="page-title"><?php echo $judul; ?></h4>
+                                <h4 class="page-title"><?php echo $judul; ?></h4>              
                             </div>
                         </div>
 
-                        <div style="width:1070px; height: 200px; float:left; padding-left: 10px; padding-top: 10px; display: none;" class="card-box" id="divinput">
+                        <!-- ======================================================================================================== -->
 
-                        <div style="width: 1200px; height: 40px"> 
-                            <div style="width: 150px; float: left;">Tanggal Pemasukan</div>
-                            <div style="width: 250px; float: left;">
-                               <input type="text" class="form-control" id="datepicker1" style="width: 130px">
-                            </div>
-                            <div style="width: 100px; float: left;">&nbsp;</div>
-                            <div style="width: 150px; float: left;">Pilih Rekening</div>
-                            <div style="width: 350px; float: left;">
-                               <select class="form-control" style="width: 240px" id="rekening">
-                                  <option value=""></option>
-                                  <?php foreach ($rekening as $variant) { ?>
-                                    <option value="<?php echo $variant->kode; ?>"><?php echo $variant->norek; ?> ( <?php echo $variant->bank; ?> )</option>
-                                  <?php } ?>  
-                              </select>    
-                            </div>
-                        </div> 
+                        <div class="row" style="font-size: 12px;">
+                            <div class="col-sm-12">
+                                <div class="card-box">                                    
+                                    <div class="row">
+                                        <div class="col-md-6 text-left">
+                                            <form class="form-horizontal" role="form">                                    
+                                                <div class="form-group">
+                                                    <label class="col-md-2">NIK</label>
+                                                    <div class="col-md-3">
+                                                        <input type="text" class="form-control input-sm" value="" id="NIK" name="NIK" data-attr="input_data">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-2">Nama</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" id="nama" name="nama" class="form-control" value="" data-attr="input_data">
+                                                    </div>
+                                                </div>
+                                                                                              
+                                            </form>
+                                        </div>    
 
-                        <div style="width: 1200px; height: 40px"> 
-                            <div style="width: 150px; float: left;">Jenis Transaksi</div>
-                            <div style="width: 250px; float: left;">
-                                <select class="form-control" style="width: 240px" id="jenistransaksi">
-                                  <option value=""></option>
-                                  <option value="DEBET">DEBET</option>
-                                  <option value="CREDIT">ADJUSTMENT</option>
-                              </select>
-                            </div>
-                            <div style="width: 100px; float: left;">&nbsp;</div>
-                            <div style="width: 150px; float: left;">Nominal</div>
-                            <div style="width: 350px; float: left;">
-                               <input type="text" value="" class="form-control" style="width: 330px;" id="nominal" onblur="this.value=formatangka(this.value)" onfocus="this.value=unformatangka(this.value)">    
-                            </div>
-                        </div>  
+                                        <div class="col-md-6 text-left">
+                                            <form class="form-horizontal" role="form">
 
-                        <div style="width: 1200px; height: 40px"> 
-                            <div style="width: 150px; float: left;">Keterangan</div>
-                            <div style="width: 250px; float: left;">
-                              <input type="text" value="" class="form-control" style="width: 330px;" id="keterangan" onblur="this.value=this.value.toUpperCase()">   
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Department</label>
+                                                    <div class="col-sm-5">
+                                                        <select class="form-control" id="department" name="department" data-attr="input_data" style="font-size: 11px;">
+                                                            <?php 
+                                                               echo "<option value=></option>"; 
+                                                            foreach ($department as $variant) { 
+                                                                  echo "<option value=".$variant['dept_id'].">".$variant['dept_name']."</option>";
+                                                               }
+                                                            ?>
+                                                        </select>                                                        
+                                                    </div>
+                                                </div>
+                                                                         
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Jabatan</label>
+                                                    <div class="col-sm-5">
+                                                        <select class="form-control" id="jabatan" name="jabatan" style="font-size: 11px;" data-attr="input_data">
+                                                            <?php 
+                                                               echo "<option value=></option>"; 
+                                                            foreach ($jabatan as $variant) { 
+                                                                  echo "<option value=".$variant['jabatan_id'].">".$variant['jabatan_name']."</option>";
+                                                               }
+                                                            ?>
+                                                        </select>                                                        
+                                                    </div>
+                                                </div>                                                                                                                                                                           
+                                            </form>
+                                        </div>
+
+                                        <!-- Untuk Button     -->
+                                        <div style="width:80%; float:left; height: 50px; padding-top: 10px" >
+                                            <button class="btn btn-success waves-effect waves-light" type="button" style="height: 35px; width: 100px; vertical-align: center" id="search" onclick="simpan()">
+                                                <label style="font-size: 12px">Save</label>
+                                            </button>
+                                            <button class="btn btn-info waves-effect waves-light" type="button" style="height: 35px; width: 100px; vertical-align: center" onclick="resetform()"> 
+                                                <label style="font-size: 12px">Reset</label>
+                                            </button>
+                                                
+                                                <!--
+                                                <button class="btn btn-danger waves-effect waves-light" type="button" style="height: 35px; width: 100px; vertical-align: center" onclick="backtotable()"> 
+                                                    <label style="font-size: 12px">Back To Table</label>
+                                                </button>
+                                                -->
+
+                                        </div>
+                                        <!-- Untuk Button     -->
+
+
+                                    </div>
+                                </div>
                             </div>
-                            <div style="width: 100px; float: left;">&nbsp;</div>                              
                         </div>
-                        
-                        <input type="text" value="-" class="form-control" style="width: 330px; display: none;" id="noref" readonly="">
 
-                        <div style="width:80%; float:left; height: 50px; padding-top: 10px" >
-                            <button class="btn btn-success waves-effect waves-light" type="button" style="height: 35px; width: 100px; vertical-align: center" id="search" onclick="simpan()">
-                                <label style="font-size: 12px">Save</label>
-                            </button>
-                                <button class="btn btn-info waves-effect waves-light" type="button" style="height: 35px; width: 100px; vertical-align: center" onclick="resetform()"> 
-                                    <label style="font-size: 12px">Reset</label>
-                                </button>
-                                <button class="btn btn-danger waves-effect waves-light" type="button" style="height: 35px; width: 100px; vertical-align: center" onclick="backtotable()"> 
-                                    <label style="font-size: 12px">Back To Table</label>
-                                </button>
-                        </div>
 
-     
-                        </div>
-
+                        <!-- ======================================================================================================== -->
 
                         <!-- datatable -->
 

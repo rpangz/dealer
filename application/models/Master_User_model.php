@@ -92,7 +92,22 @@
 	}
 
 
+	function GetDepartment(){
+	      $this->db->select('*');
+	      $this->db->from('master_department');
+	      $this->db->where('status','1');
+	      $department = $this->db->get()->result_array();
+	      return $department;
+	  }
 
+
+	function GetJabatan(){
+	      $this->db->select('*');
+	      $this->db->from('master_jabatan');
+	      $this->db->where('status','1');
+	      $jabatan = $this->db->get()->result_array();
+	      return $jabatan;
+	  } 
 
 
 

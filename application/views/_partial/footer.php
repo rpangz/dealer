@@ -96,9 +96,10 @@
                 }); 
             }
 
-            function backtotable(){
-                document.getElementById("divdatatable").style.display = "none"; 
-                document.getElementById("divinput").style.display = ""; 
+            function backtotable(){                
+                document.getElementById("divdatatable").style.display = ""; 
+                document.getElementById("divinput").style.display = "none"; 
+                //loaddatatable();
             }
 
 

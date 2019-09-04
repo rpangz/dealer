@@ -10,12 +10,15 @@ TableManageButtons.init();
 */
 
 function resetform(){
+	/*
 	document.getElementById("datepicker1").value = "";
 	document.getElementById("rekening").value = "";
 	document.getElementById("jenistransaksi").value = "";
 	document.getElementById("nominal").value = "";
 	document.getElementById("keterangan").value = "";
 	document.getElementById("noref").value = "-";
+	*/
+	$('input[data-attr=input_data').val('');
 }
 
 function formatangka(bilangan){
@@ -37,17 +40,15 @@ function unformatangka(bilangan){
 }
 
 function simpan(){
-	var tglmasuk = $('#datepicker1').val();
-	var rekening = $('#rekening').val();
-	var jenistransaksi = $('#jenistransaksi').val();
-	var nominal = $('#nominal').val();
-		nominal = nominal.replace(/,/g, '');
-	var keterangan = $('#keterangan').val();
-	var noref = $('#noref').val();
+	var NIK = $('#NIK').val();
+	var nama = $('#nama').val();
+	var department = $('#department').val();
+	var jabatan = $('#jabatan').val();
+		// nominal = nominal.replace(/,/g, ''); Untuk Nominal
     $.ajax({
       type: "POST",
-      url: "Transaksi_bank/simpan",
-      data : {"tglmasuk" : tglmasuk, "rekening" : rekening, "jenistransaksi" : jenistransaksi, "nominal" : nominal, "keterangan" : keterangan, "noref" : noref},
+      url: "Master_User/simpan",
+      data : {"NIK" : NIK, "rekening" : rekening, "nama" : nama, "department" : department, "jabatan" : jabatan},
       success: function(data){
       	/*
       	var datasplit = data.split("|");
@@ -101,6 +102,7 @@ function loaddatatable(Query){
                 text:      '<i class="fa fa-file-pdf-o" style="color:red"></i>',
                 titleAttr: 'PDF'
             },
+            /* 
             {
 	            text: 'Add New Data',
 	            action: function ( e, dt, node, config ) {
@@ -109,6 +111,7 @@ function loaddatatable(Query){
 
 	            }
         	},
+        	*/
         ],
 	    pageLength:10,
 	    "bDestroy": true,
@@ -118,23 +121,16 @@ function loaddatatable(Query){
 		    { data: 'dept_name' },
 		    { data: 'jabatan_name' },
 		    { data: 'statusname'},
-		    { data: 'statusname'}
+		    { data: 'statusname',
+                    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                        $(nTd).html("<a href='#' onclick='deletedata("+oData.nik+")'><i class=\"glyphicon glyphicon-pencil\" style=\"color:red\"></i></a>&nbsp;<a href='#' onclick='deletedata("+oData.nik+")'><i class=\"glyphicon glyphicon-trash \" style=\"color:red\"></i></a>");
+                    }
+			}
 	    ]
 
 
 	    
 	} );
-
-
-
-
-
-	table.buttons().container()
-        .appendTo( '#example_wrapper .small-6.columns:eq(0)' );
-
-
-
-
 
 }
 
