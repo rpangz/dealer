@@ -8,12 +8,12 @@
 	  	$errmsg = "";
 
 	  	$this->load->helper('date');
-	  	$this->form_validation->set_rules('NIK', 'NIK', 'trim|required');
+	  	$this->form_validation->set_rules('NIK', 'NIK', 'trim|required|numeric');
 	  	$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
 	  	$this->form_validation->set_rules('department', 'Department', 'trim|required');
 	  	$this->form_validation->set_rules('jabatan', 'Jabatan', 'trim|required');
 	  	$this->form_validation->set_rules('status', 'Status', 'trim|required');
-
+	  	$this->form_validation->set_error_delimiters('- ', '');
 
 
 	  	
@@ -24,14 +24,15 @@
 		$department = $this->input->post('department');
 		$jabatan = $this->input->post('jabatan');
 		$status = $this->input->post('status');
+		$tipe = $this->input->post('typeform');
 
 		$query = $this->db->query("SELECT * FROM secure_user_register WHERE nik = '".$NIK."'");
 		$jumlahdata = $query->num_rows();
 	  	
 
-		if($jumlahdata>0){
+		if($jumlahdata>0 && $tipe=="ADD"){
 			$error = true;
-			$errmsg .= "NIK Sudah Pernah Di Input";
+			$errmsg .= "- NIK Sudah Pernah Di Input";
 		}
 
 		if($this->form_validation->run() == FALSE) {
@@ -43,26 +44,44 @@
 	  	if($error) {
 	  		echo "NO|".$errmsg;
 	  	} else {
-	  		$data = array(
-				'nik' => $NIK,
-				'nama' => $nama, 
-				'password' => '', 
-				'department' => $department, 
-				'jabatan' => $jabatan,				
-				'createtime' => '2018-01-01',
-				'createuser' => 'testuser',
-				'status' => $status
-			);
-				$result = $this->db->insert('secure_user_register', $data);	
-				if($result){ echo "OK|Data Berhasil Di Input"; } else { echo "NO|Data Gagal Di Input"; }					
+
+	  		if($tipe=="ADD"){
+	  			$data = array(
+					'nik' => $NIK,
+					'nama' => strtoupper($nama), 
+					'password' => '', 
+					'department' => $department, 
+					'jabatan' => $jabatan,				
+					'createtime' => '2018-01-01',
+					'createuser' => 'testuser',
+					'status' => $status
+				);
+				$result = $this->db->insert('secure_user_register', $data);		
+	  		} else {
+	  			$data = array(					
+					'nama' => strtoupper($nama), 
+					'password' => '', 
+					'department' => $department, 
+					'jabatan' => $jabatan,				
+					'createtime' => '2018-01-01',
+					'createuser' => 'testuser',
+					'status' => $status
+				);
+				$result = $this->db->where('nik', $NIK)
+							   	   ->update('secure_user_register', $data);
+	  		}
+			if($result){ echo "OK|Data Berhasil Di Simpan"; } else { echo "NO|Data Gagal Di Simpan"; }					
 	  	}
-			
-	  	
-		
-			//$this->db->where('kodecbg', $kodecbg);
-			//$this->db->update('cabang', $data);
-			//echo "UPDATE";
-		
+	}
+
+
+	function hapus() {
+	  	$error = false;
+	  	$errmsg = "";
+	  	$key_data = $this->input->post('key_data');	
+		$result = $this->db->where('nik',$key_data)
+						   ->delete('secure_user_register');						 
+		if($result){ echo "OK"; } else { echo "NO"; }						  	
 	}
 
 
@@ -70,7 +89,7 @@
 
 	function loadtable(){
 
-	  $this->db->select('nik,nama,dept_name,jabatan_name,statusname');
+	  $this->db->select('CAST(nik AS CHAR) nik,nama,dept_name,jabatan_name,statusname');
       $this->db->from('secure_user_register');
       $this->db->join('master_department', 'secure_user_register.department = master_department.dept_id');
       $this->db->join('master_jabatan', 'secure_user_register.jabatan = master_jabatan.jabatan_id');
@@ -97,6 +116,16 @@
 	      $this->db->where('status','1');
 	      $jabatan = $this->db->get()->result_array();
 	      return $jabatan;
+	  }
+
+	function editloaddata(){
+
+		  $NIK = $this->input->post('key_data');
+	      $this->db->select('*');
+	      $this->db->from('secure_user_register');
+	      $this->db->where('nik',$NIK);
+	      $userdata = $this->db->get()->result_array();
+	      echo json_encode($userdata);
 	  } 
 
 

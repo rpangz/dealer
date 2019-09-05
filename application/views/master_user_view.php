@@ -26,9 +26,16 @@
 
                         <!-- Page-Title -->
                        <div class="row">
-                            <div class="col-sm-12">
-                                <h4 class="page-title"><?php echo $judul; ?></h4>                      
+                            <div class="col-sm-10">
+                                <h4 class="page-title"><?php echo $judul; ?> :</h4>  
                             </div>
+                            <div class="col-sm-2">                                
+                                <span class="label label-success" id="spantypeform">
+                                    TYPE FORM : ADD DATA
+                                </span>
+                                <input type="hidden" id="typeform" value="ADD">  
+                            </div>
+                            
                         </div>
 
                         <!-- ======================================================================================================== -->
@@ -63,7 +70,7 @@
                                                     <div class="col-sm-5">
                                                         <select class="form-control" id="department" name="department" data-attr="input_data" style="font-size: 11px;">
                                                             <?php 
-                                                               echo "<option value=></option>"; 
+                                                               echo "<option value='' disabled selected>- SELECT DEPARTMENT -</option>"; 
                                                             foreach ($department as $variant) { 
                                                                   echo "<option value=".$variant['dept_id'].">".$variant['dept_name']."</option>";
                                                                }
@@ -77,7 +84,7 @@
                                                     <div class="col-sm-5">
                                                         <select class="form-control" id="jabatan" name="jabatan" style="font-size: 11px;" data-attr="input_data">
                                                             <?php 
-                                                               echo "<option value=></option>"; 
+                                                               echo "<option value='' disabled selected>- SELECT JABATAN -</option>"; 
                                                             foreach ($jabatan as $variant) { 
                                                                   echo "<option value=".$variant['jabatan_id'].">".$variant['jabatan_name']."</option>";
                                                                }
@@ -91,7 +98,7 @@
                                                     <div class="col-sm-5">
                                                         <select class="form-control" id="status" name="status" style="font-size: 11px;" data-attr="input_data">
                                                             <?php 
-                                                               echo "<option value=></option>"; 
+                                                               echo "<option value='' disabled selected>- SELECT STATUS -</option>"; 
                                                                foreach ($list_status as $variant) { 
                                                                   echo "<option value=".$variant['id_status'].">".$variant['statusname']."</option>";
                                                                } 
