@@ -30,7 +30,12 @@
         <script src="assets/plugins/jquery-datatables-editable/jquery.dataTables.js"></script>
         <script src="assets/plugins/jquery-datatables-editable/dataTables.bootstrap.js"></script>
 
+        <!--
         <script src="assets/plugins/bootstrap-sweetalert/sweet-alert.min.js"></script>
+        <script src="assets/plugins/bootstrap-sweetalert/sweet-alert.js"></script>
+        -->
+        <script src="assets/plugins/bootstrap-sweetalert2/sweetalert2.all.min.js"></script>
+
         <script src="assets/pages/jquery.sweet-alert.init.js"></script>
 
         <script src="assets/plugins/moment/moment.js"></script>

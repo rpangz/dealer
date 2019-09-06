@@ -45,6 +45,16 @@ class Master_User extends MY_Controller
 		$this->Master_User_model->add();
 	}
 
+	function hapus(){
+		$this->load->model('Master_User_model');
+		$this->Master_User_model->hapus();
+	}
+
+	function editloaddata(){
+		$this->load->model('Master_User_model');
+		$this->Master_User_model->editloaddata();
+	}
+
 	function datatable(){
 		$this->load->model('Master_User_model');
 		$this->Master_User_model->loadtable();
