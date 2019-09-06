@@ -19,6 +19,8 @@ function resetform(){
 	document.getElementById("noref").value = "-";
 	*/
 	$('input[data-attr=input_data').val('');
+	$('select[data-attr=input_data').val('');
+
 }
 
 function formatangka(bilangan){
