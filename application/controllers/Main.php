@@ -4,6 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Main extends MY_Controller
 {	
 
+	public function __construct()
+	{
+		parent::__construct();
+		if(!$this->session->userdata('nik')) header("location: ".base_url('login'));
+		
+	}
+
 	function index(){
 
 		/*		
@@ -14,6 +21,7 @@ class Main extends MY_Controller
 		//$this->load->view('_partial/menu',$data);
 		$data['menu'] = $this->Main_model->GetMenu();   
 		*/		 
+		
 		$this->load->view('main');
 	}
 

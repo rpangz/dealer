@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://172.16.160.227/PC/';
+$config['base_url'] = 'http://192.168.0.5/dealer/';
 
 /*
 |--------------------------------------------------------------------------
@@ -524,4 +524,5 @@ $config['proxy_ips'] = '';
 
 
 
-$config['foo'] = '© 2019. All rights reserved.';
+$config['foo'] = '© 2019. All rights reserveds';
+$config['titleheader'] = 'Project-Title';

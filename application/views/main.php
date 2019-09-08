@@ -33,7 +33,7 @@
 
                         <div class="row" style="width: 2200px;">
                             <div class="col-lg-6">
-
+                                
                             </div>
                         </div>
                         <!-- end row -->

@@ -12,7 +12,9 @@ class Master_User extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		
+
+		cek_login();
+		//if(!$this->session->userdata('nik')) header("location: ".base_url('login'));
 		/*
 		$this->load->model('Main_model');	    
 	    $list_status = $this->Main_model->GetStatus();
@@ -31,8 +33,8 @@ class Master_User extends MY_Controller
     	
     	$nama = $this->router->fetch_class();
 
-    	$data['list_status'] = $this->Main_model->GetStatus();
-		$data['judul'] = $this->Main_model->GetJudul($nama);
+    	$data['list_status'] = GetStatusList();
+		$data['judul'] = GetJudul($nama);
 		$data['formname'] = $nama;
 		$data['department'] = $this->Master_User_model->GetDepartment();
 		$data['jabatan'] = $this->Master_User_model->GetJabatan();

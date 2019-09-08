@@ -5,7 +5,7 @@
 
 <link rel="shortcut icon" href="assets/images/favicon_1.ico">
 
-<title>Unknown</title>
+<title><?php echo $this->config->item('titleheader'); ?></title>
 
 <!--Morris Chart CSS -->
 <link rel="stylesheet" href="assets/plugins/morris/morris.css">
@@ -27,6 +27,7 @@
 <link href="assets/plugins/clockpicker/css/bootstrap-clockpicker.min.css" rel="stylesheet">
 <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
+<link href="assets/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet">
 
 <link href="assets/plugins/datatables/buttons.bootstrap.min.css" rel="stylesheet">
 <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet">
