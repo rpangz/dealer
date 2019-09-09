@@ -1,6 +1,8 @@
 <?php
 class Main_model extends CI_Model
 {
+
+  //TIDAK DI GUNAKAN KARENA PENGECEKAN LANGSUNG DI VIEW/PARTIAL/MENU.PHP
   function GetMenu()
   {
       $menu = array();
@@ -22,7 +24,9 @@ class Main_model extends CI_Model
 
       return $menu;
   }
+  //=============================================================================
 
+  
   function GetStatus(){
         $this->db->select('*');
         $this->db->from('list_status');

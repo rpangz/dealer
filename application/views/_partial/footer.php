@@ -58,6 +58,8 @@
         <script src="assets/plugins/datatables/buttons.html5.min.js"></script>
         <!-- ===================================================================== -->
 
+        <script src="assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
 
         <script src="assets/pages/jquery.dashboard.js"></script>
 

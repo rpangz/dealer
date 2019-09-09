@@ -5,7 +5,7 @@
                     <div class="text-center">
                        
                         <!-- Image Logo here -->
-                        <a href="index.html" class="logo">
+                        <a href="Main" class="logo">
                             <i class="icon-c-logo"> <img src="assets/images/logo_sm.png" height="42"/> </i> <!-- Image Logo pada saat minimize menu -->
                             <span><img src="assets/images/logoam.png" height="20"/></span> <!-- Image Logo pada saat maximize menu -->
                         </a>
@@ -70,9 +70,9 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="javascript:void(0)"><i class="ti-user m-r-10 text-custom"></i> Profile</a></li>
                                         <li><a href="javascript:void(0)"><i class="ti-settings m-r-10 text-custom"></i> Settings</a></li>
-                                        <li><a href="javascript:void(0)"><i class="ti-lock m-r-10 text-custom"></i> Lock screen</a></li>
+                                        <li><a href="javascript:void(0)"><i class="ti-lock m-r-10 text-custom"></i> Change Password </a></li>
                                         <li class="divider"></li>
-                                        <li><a href="javascript:void(0)"><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
+                                        <li><a href="login/logout"><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>

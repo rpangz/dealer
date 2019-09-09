@@ -55,7 +55,7 @@
                                                 <div class="form-group">
                                                     <label class="col-md-2">Nama</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" id="nama" name="nama" class="form-control" value="" data-attr="input_data">
+                                                        <input type="text" id="nama" name="nama" class="form-control input-sm" value="" data-attr="input_data">
                                                     </div>
                                                 </div>
                                                                                               
@@ -68,7 +68,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Department</label>
                                                     <div class="col-sm-5">
-                                                        <select class="form-control" id="department" name="department" data-attr="input_data" style="font-size: 11px;">
+                                                        <select class="form-control input-sm" id="department" name="department" data-attr="input_data" style="font-size: 11px;">
                                                             <?php 
                                                                echo "<option value='' disabled selected>- SELECT DEPARTMENT -</option>"; 
                                                             foreach ($department as $variant) { 
@@ -82,7 +82,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Jabatan</label>
                                                     <div class="col-sm-5">
-                                                        <select class="form-control" id="jabatan" name="jabatan" style="font-size: 11px;" data-attr="input_data">
+                                                        <select class="form-control  input-sm" id="jabatan" name="jabatan" style="font-size: 11px;" data-attr="input_data">
                                                             <?php 
                                                                echo "<option value='' disabled selected>- SELECT JABATAN -</option>"; 
                                                             foreach ($jabatan as $variant) { 
@@ -96,7 +96,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Status</label>
                                                     <div class="col-sm-5">
-                                                        <select class="form-control" id="status" name="status" style="font-size: 11px;" data-attr="input_data">
+                                                        <select class="form-control input-sm" id="status" name="status" style="font-size: 11px;" data-attr="input_data">
                                                             <?php 
                                                                echo "<option value='' disabled selected>- SELECT STATUS -</option>"; 
                                                                foreach ($list_status as $variant) { 

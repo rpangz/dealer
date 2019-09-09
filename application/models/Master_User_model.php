@@ -1,7 +1,8 @@
 <?php
 	class Master_User_model extends CI_Model
 	{
-		
+	
+
 	  function add() {
 
 	  	$error = false;
@@ -13,10 +14,10 @@
 	  	$this->form_validation->set_rules('department', 'Department', 'trim|required');
 	  	$this->form_validation->set_rules('jabatan', 'Jabatan', 'trim|required');
 	  	$this->form_validation->set_rules('status', 'Status', 'trim|required');
-	  	$this->form_validation->set_error_delimiters('- ', '');
-
+	  	$this->form_validation->set_error_delimiters('=> ', ' | ');
 
 	  	
+	  	$createuser = $this->session->userdata('nik');
 
 	  	$NIK = $this->input->post('NIK');	
   		//$tglmasuk = date('Y-m-d',strtotime($tglmasuk));	  		
@@ -25,16 +26,21 @@
 		$jabatan = $this->input->post('jabatan');
 		$status = $this->input->post('status');
 		$tipe = $this->input->post('typeform');
+		$password =  password_hash('password.123', PASSWORD_DEFAULT);
 
+		if($tipe=="ADD") {
+	  		$this->form_validation->set_rules('NIK', 'NIK', 'trim|required|numeric|is_unique[secure_user_register.nik]',['is_unique' => 'NIK sudah pernah di input ']);
+	  	}
+
+/*
 		$query = $this->db->query("SELECT * FROM secure_user_register WHERE nik = '".$NIK."'");
 		$jumlahdata = $query->num_rows();
-	  	
-
+	  
 		if($jumlahdata>0 && $tipe=="ADD"){
 			$error = true;
 			$errmsg .= "- NIK Sudah Pernah Di Input";
 		}
-
+*/
 		if($this->form_validation->run() == FALSE) {
 			$error = true;
 			$errmsg .= validation_errors();	
@@ -49,24 +55,23 @@
 	  			$data = array(
 					'nik' => $NIK,
 					'nama' => strtoupper($nama), 
-					'password' => '', 
+					'password' => $password, 
 					'department' => $department, 
-					'jabatan' => $jabatan,				
-					'createtime' => '2018-01-01',
-					'createuser' => 'testuser',
+					'jabatan' => $jabatan,
+					'createuser' => $createuser,
 					'status' => $status
 				);
+				$this->db->set('createtime', 'NOW()', FALSE);
 				$result = $this->db->insert('secure_user_register', $data);		
 	  		} else {
 	  			$data = array(					
 					'nama' => strtoupper($nama), 
-					'password' => '', 
 					'department' => $department, 
-					'jabatan' => $jabatan,				
-					'createtime' => '2018-01-01',
-					'createuser' => 'testuser',
+					'jabatan' => $jabatan,
+					'createuser' => $createuser,
 					'status' => $status
 				);
+				$this->db->set('createtime', 'NOW()', FALSE);
 				$result = $this->db->where('nik', $NIK)
 							   	   ->update('secure_user_register', $data);
 	  		}
