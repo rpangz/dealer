@@ -143,7 +143,7 @@
                     <div class="row" id="divdatatable">
                         <div class="col-sm-12">
                             <div class="card-box table-responsive">
-                                <table id="datatablemaster" class="table table-striped table-bordered" style="font-size: 11px;">
+                                <table id="datatablemaster" class="table table-striped table-bordered" style="font-size: 11px; width: 100%;">
                                     <thead>
                                     <tr>
                                         <th>NIK</th>
