@@ -2,6 +2,9 @@
 <html>
     <head> 
         <script src="assets/js/admin/<?php echo $formname; ?>.js"></script>
+        <style type="text/css">
+            
+        </style>
         <?php $this->load->view('_partial/header.php'); ?>
     </head>
 
@@ -49,7 +52,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Nama Menu</label>
                                                     <div class="col-sm-5">
-                                                        <select class="form-control input-sm" id="namamenu" name="namamenu" data-attr="input_data" style="font-size: 11px;">
+                                                        <select class="selectpicker form-control input-sm" id="namamenu" name="namamenu" data-attr="input_data">
                                                             <?php 
                                                                echo "<option value='' disabled selected>- SELECT MENU -</option>"; 
                                                             foreach ($menu as $variant) { 

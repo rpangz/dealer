@@ -41,3 +41,13 @@
 <![endif]-->
 
 <script src="assets/js/modernizr.min.js"></script>
+
+<style type="text/css">
+	.btn{
+      font-size: 11px !important;
+    }
+
+    .dropdown-menu{
+      font-size: 11px !important;  
+    }
+</style>

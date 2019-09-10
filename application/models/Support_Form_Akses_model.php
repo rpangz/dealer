@@ -135,7 +135,11 @@
 	  function GetMenu(){
 	      $this->db->select('*');
 	      $this->db->from('secure_form_register');
-	      $this->db->where('formstatus','1');
+	      $this->db->join('master_formheader','secure_form_register.formheader=master_formheader.id_form');
+	      $this->db->where('secure_form_register.formstatus','1');
+	      $this->db->where('master_formheader.formstatus','1');
+	      $this->db->order_by('ordinal', 'ASC');
+	      $this->db->order_by('formname', 'ASC');
 	      $arrvar = $this->db->get()->result_array();
 	      return $arrvar;
 	  }
