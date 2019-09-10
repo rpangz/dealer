@@ -169,6 +169,7 @@ function loaddatatable(Query){
         	},
         	*/
         ],
+        "autoWidth": true,
 	    pageLength:10,
 	    "bDestroy": true,
 	    columns: [  
