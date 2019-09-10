@@ -128,6 +128,9 @@ function editloaddata(key_data){
 
 function loaddatatable(Query){
 
+	var edittooltip = "Edit Form Header";
+	var deletetooltip = "Delete Form Header";
+
 	$('#datatablemaster').dataTable( {
 	    ajax: {
 	        url: 'Master_Header_Form/dataTable',
@@ -173,7 +176,7 @@ function loaddatatable(Query){
 		    { data: 'statusname'},
 		    { data: 'statusname',
                     "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                        $(nTd).html("<a href='#' onclick='editloaddata("+oData.id_form+")'><i class=\"glyphicon glyphicon-pencil\" style=\"color:red\"></i></a>&nbsp;&nbsp;<a href='#' onclick='deletedata("+oData.id_form+")'><i class=\"glyphicon glyphicon-trash \" style=\"color:red\"></i></a>");
+                        $(nTd).html("<a href='#' onclick='editloaddata("+oData.id_form+")'><i class=\"glyphicon glyphicon-pencil\" style=\"color:red\" title=\""+edittooltip+"\"></i></a>&nbsp;&nbsp;<a href='#' onclick='deletedata("+oData.id_form+")'><i class=\"glyphicon glyphicon-trash \" style=\"color:red\" title=\""+edittooltip+"\"></i></a>");
                     }
 			}
 	    ]

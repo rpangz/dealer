@@ -131,8 +131,6 @@ function loaddatatablex(Query){
 
 function loaddatatable(Query){
 
-	var titletooltip = "User";
-
 	$('#datatablemaster').dataTable( {
 	    ajax: {
 	        url: 'Master_User/dataTable',
@@ -179,7 +177,7 @@ function loaddatatable(Query){
 		    { data: 'statusname'},
 		    { data: 'statusname',
                     "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                        $(nTd).html("<a href='#' onclick='editloaddata("+oData.nik+")'><i class=\"glyphicon glyphicon-pencil\" style=\"color:red\" title=\"Edit "+titletooltip+"\"></i></a>&nbsp;&nbsp;<a href='#' onclick='deletedata("+oData.nik+")' title=\"Delete "+titletooltip+"\"><i class=\"glyphicon glyphicon-trash \" style=\"color:red\"></i></a>&nbsp;&nbsp;<a href='#' onclick='resetpassword("+oData.nik+")' title=\"Reset Password\"><i class=\"glyphicon glyphicon-lock\" style=\"color:red\"></i></a>");
+                        $(nTd).html("<a href='#' onclick='editloaddata("+oData.nik+")'><i class=\"glyphicon glyphicon-pencil\" style=\"color:red\"></i></a>&nbsp;&nbsp;<a href='#' onclick='deletedata("+oData.nik+")'><i class=\"glyphicon glyphicon-trash \" style=\"color:red\"></i></a>");
                     }
 			}
 	    ]
@@ -217,45 +215,6 @@ function deletedata(key_data){
 		        	var alertheader = "Failed";
 		        	var alerttype   = "warning";
 		        	var err_msg = "Data gagal di hapus!";
-		        	//swal(alertheader, err_msg, alerttype);
-		        }
-		        Swal.fire(alertheader,err_msg,alerttype);
-			    loaddatatable();		          
-		      }, 
-		     error: function(status) {
-		         Swal.fire("Error!","Terdapat eror pada aplikasi","error");
-		     }     
-		    });		
-	  }
-	})
-}
-
-
-function resetpassword(key_data){
-	Swal.fire({
-	  title: 'Apakah Anda Yakin?',
-	  text: "Password Akan Kembali Ke Password Default!",
-	  type: 'warning',
-	  showCancelButton: true,
-	  confirmButtonColor: '#3085d6',
-	  cancelButtonColor: '#d33',
-	  confirmButtonText: 'Reset'
-	}).then((result) => {
-	  if (result.value) {	
-		    $.ajax({
-		      type: "POST",
-		      url: "Master_User/resetpassword",
-		      data : {"key_data" : key_data},
-		      success: function(data){
-		 		if(data=="OK") {
-		        	var alertheader = "Success";
-		        	var alerttype   = "success";
-		        	var err_msg = "Password Nik "+key_data+" Berhasi Di Reset!";
-		        	//swal(alertheader, err_msg, alerttype);
-		        } else {
-		        	var alertheader = "Failed";
-		        	var alerttype   = "warning";
-		        	var err_msg = "Password Nik "+key_data+" Gagal Di Reset!";
 		        	//swal(alertheader, err_msg, alerttype);
 		        }
 		        Swal.fire(alertheader,err_msg,alerttype);

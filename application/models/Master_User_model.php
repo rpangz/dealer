@@ -89,8 +89,18 @@
 		if($result){ echo "OK"; } else { echo "NO"; }						  	
 	}
 
+	function resetpassword() {
 
-
+		$key_data = $this->input->post('key_data');	
+		$password =  password_hash('password.123', PASSWORD_DEFAULT);
+		$data = array(					
+					'password' => $password 					
+				);	  	
+		$this->db->set('createtime', 'NOW()', FALSE);
+				$result = $this->db->where('nik', $key_data)
+							   	   ->update('secure_user_register', $data);					 
+		if($result){ echo "OK"; } else { echo "NO"; }						  	
+	}
 
 	function loadtable(){
 

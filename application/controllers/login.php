@@ -23,6 +23,7 @@ class login extends MY_Controller
 	    $this->db->select('*');
 	    $this->db->from('secure_user_register');
 	    $this->db->where('nik',$nik);
+	    $this->db->where('status',1);
 	    $user = $this->db->get()->row_array();	 
 
 	    if($user) {

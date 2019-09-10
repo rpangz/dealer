@@ -131,6 +131,9 @@ function loaddatatablex(Query){
 
 function loaddatatable(Query){
 
+	var edittooltip = "Edit Department";
+	var deletetooltip = "Delete Department";
+
 	$('#datatablemaster').dataTable( {
 	    ajax: {
 	        url: 'Master_Department/dataTable',
@@ -174,7 +177,7 @@ function loaddatatable(Query){
 		    { data: 'statusname' },
 		    { data: 'statusname',
                     "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                        $(nTd).html("<a href='#' onclick='editloaddata("+oData.dept_id+")'><i class=\"glyphicon glyphicon-pencil\" style=\"color:red\"></i></a>&nbsp;&nbsp;<a href='#' onclick='deletedata("+oData.dept_id+")'><i class=\"glyphicon glyphicon-trash \" style=\"color:red\"></i></a>");
+                        $(nTd).html("<a href='#' onclick='editloaddata("+oData.dept_id+")'><i class=\"glyphicon glyphicon-pencil\" style=\"color:red\" title=\""+edittooltip+"\"></i></a>&nbsp;&nbsp;<a href='#' onclick='deletedata("+oData.dept_id+")'><i class=\"glyphicon glyphicon-trash \" style=\"color:red\" title=\""+deletetooltip+"\"></i></a>");
                     }
 			}
 	    ]

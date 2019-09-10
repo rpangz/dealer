@@ -52,6 +52,11 @@ class Master_User extends MY_Controller
 		$this->Master_User_model->hapus();
 	}
 
+	function resetpassword(){
+		$this->load->model('Master_User_model');
+		$this->Master_User_model->resetpassword();
+	}
+
 	function editloaddata(){
 		$this->load->model('Master_User_model');
 		$this->Master_User_model->editloaddata();
